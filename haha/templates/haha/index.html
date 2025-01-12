@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Обработка данных с выбором шифра</title>
+</head>
+<body>
+    <h1>Введите данные для обработки</h1>
+    <form method="post">
+        {% csrf_token %}
+        <!-- Поле ввода текста -->
+        <label for="input-data">Введите данные:</label>
+        <input type="text" id="input-data" name="input_data"  value="{{ input_data }}" maxlength="2000" required>
+
+        <!-- Выпадающий список для выбора шифрования -->
+        <label for="cipher">Выберите шифр:</label>
+        <select id="cipher" name="cipher" required>
+            <option value="sha224">SHA-224</option>
+            <option value="sha384">SHA-384</option>
+            <option value="sha512">SHA-512</option>
+            <option value="sha256">SHA-256</option>
+            <option value="sha1">SHA-1</option>
+            <option value="sha3_224">SHA3_224</option>
+            <option value="sha3_256">SHA3_256</option>
+            <option value="sha3_384">SHA3_384</option>
+            <option value="sha3_512">SHA3_512</option>
+            <option value="md5">MD5</option>
+        </select>
+
+        <!-- Кнопка отправки -->
+        <button type="submit">Отправить</button>
+    </form>
+
+    {% if result %}
+        <h2>Результат:</h2>
+        <p>{{ result }}</p>
+    {% endif %}
+</body>
+</html>

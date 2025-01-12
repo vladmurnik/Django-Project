@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Обработка данных с выбором шифра</title>
+</head>
+<body>
+    <h1>Введите данные для шифрования</h1>
+    <form method="post">
+        {% csrf_token %}
+        <!-- Поле ввода текста -->
+        <label for="input-data">Введите данные:</label>
+        <input type="text" id="input-data" name="input_data" value="{{ input_data }}" maxlength="2000" required>
+
+        <!-- Поле ввода ключа -->
+        <label for="key">Введите ключ:</label>
+        <input type="text" id="key" name="key" value="{{ key }}" maxlength="2000" required>
+
+        <!-- Выпадающий список для выбора шифрования -->
+        <label for="cipher">Выберите шифр:</label>
+        <select id="cipher" name="cipher" required>
+            <option value="adik_1">ADIK_1</option>
+            <option value="adik_2">ADIK_2</option>
+            <option value="block_cipher">BLOCK_1</option>
+        </select>
+
+        <!-- Кнопка отправки -->
+        <button type="submit">Отправить</button>
+    </form>
+
+    {% if result %}
+        <h2>Результат:</h2>
+        <p>{{ result }}</p>
+    {% endif %}
+
+    <h1>Введите данные для дешифрования</h1>
+    <form method="post">
+        {% csrf_token %}
+        <!-- Поле ввода текста -->
+        <label for="deinput-data">Введите данные:</label>
+        <input type="text" id="deinput-data" name="deinput_data" value="{{ deinput_data }}" maxlength="2000" required>
+
+        <!-- Поле ввода ключа -->
+        <label for="dekey">Введите ключ:</label>
+        <input type="text" id="dekey" name="dekey" value="{{ dekey }}" maxlength="2000" required>
+
+        <!-- Выпадающий список для выбора шифрования -->
+        <label for="cipher">Выберите шифр:</label>
+        <select id="cipher" name="cipher" required>
+            <option value="adik_1">ADIK_1</option>
+            <option value="adik_2">ADIK_2</option>
+            <option value="block_cipher">BLOCK_1</option>
+        </select>
+
+        <!-- Кнопка отправки -->
+        <button type="submit">Отправить</button>
+    </form>
+
+    {% if deresult %}
+        <h2>Результат:</h2>
+        <p>{{ deresult }}</p>
+    {% endif %}
+</body>
+</html>
